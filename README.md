@@ -3,11 +3,11 @@ cordova-sailfish
 
 Cordova-sailfish is a SailfishOS port of the Apache Cordova project. 
 
-#Requirements
+# Requirements
 
 [Saiflish OS SDK](https://sailfishos.org/)
 
-#Supported APIs
+# Supported APIs
 
 * Accelerometer
 * Battery

@@ -23,6 +23,8 @@ Source100:  cordova-sailfish.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9
 Requires:   qt5-qtmultimedia-plugin-mediaservice-gstcamerabin
 Requires:   qt5-qtdeclarative-pim-contacts
+Requires:   qt5-qtdeclarative-systeminfo
+Requires:   qt5-qtdeclarative-import-positioning
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)

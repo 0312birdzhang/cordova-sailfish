@@ -62,7 +62,7 @@ Page {
     SilicaWebView {
         id: webView
         anchors.fill: parent
-        visible: false
+//        visible: false
         // Set preferences
         experimental.preferences.developerExtrasEnabled: true
         experimental.preferences.navigatorQtObjectEnabled: true
@@ -92,7 +92,7 @@ Page {
             PluginsManager.PluginsManager.addPlugin("Vibration");
             PluginsManager.PluginsManager.addPlugin("NetworkStatus");
             PluginsManager.PluginsManager.addPlugin("Compass");
-            PluginsManager.PluginsManager.addPlugin("Battery");
+//            PluginsManager.PluginsManager.addPlugin("Battery");
             PluginsManager.PluginsManager.addPlugin("Notification");
             PluginsManager.PluginsManager.addPlugin("Accelerometer");
             PluginsManager.PluginsManager.addPlugin("InAppBrowser");
