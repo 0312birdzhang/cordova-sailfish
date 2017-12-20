@@ -38,10 +38,31 @@ import "../plugins_manager.js" as PluginsManager
 Page {
     id: cordovaPage
 
+    BusyIndicator {
+        id: busyIndicator
+        anchors.centerIn: parent
+        running: true
+        size: BusyIndicatorSize.Large
+    }
+
+    Timer {
+        id: checkState
+        interval: 1000
+        repeat: true
+        triggeredOnStart: true
+        onTriggered: {
+            if(!webview.loading){
+                checkState.stop();
+                busyIndicator.running = false;
+                webview.visible = true;
+            }
+        }
+    }
+
     SilicaWebView {
         id: webView
         anchors.fill: parent
-
+        visible: false
         // Set preferences
         experimental.preferences.developerExtrasEnabled: true
         experimental.preferences.navigatorQtObjectEnabled: true
