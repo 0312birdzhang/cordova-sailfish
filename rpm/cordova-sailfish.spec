@@ -25,10 +25,12 @@ Requires:   qt5-qtmultimedia-plugin-mediaservice-gstcamerabin
 Requires:   qt5-qtdeclarative-pim-contacts
 Requires:   qt5-qtdeclarative-systeminfo
 Requires:   qt5-qtdeclarative-import-positioning
+Requires:   pyotherside-qml-plugin-python3-qt5
 BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
+BuildRequires:  pkgconfig(Qt5SystemInfo)
 BuildRequires:  qt5-qtpim-contacts
 BuildRequires:  desktop-file-utils
 

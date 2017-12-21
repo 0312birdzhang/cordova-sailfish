@@ -4,6 +4,7 @@ import QtContacts 5.0
 
 Item {
     id: contactsPlugin
+    objectName: "contactsPlugin"
     property variant webview
     property string callbackID
     property string errCallbackID

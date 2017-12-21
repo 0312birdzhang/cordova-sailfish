@@ -3,6 +3,7 @@ import QtFeedback 5.0
 
 Item{
     id: vibrationPlugin
+    objectName: "vibrationPlugin"
 
     HapticsEffect {
         id: vibration

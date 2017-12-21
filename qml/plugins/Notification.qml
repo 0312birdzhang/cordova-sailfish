@@ -4,6 +4,7 @@ import QtMultimedia 5.0
 
 Item {
     id: notificationPlugin
+    objectName: "notificationPlugin"
     property variant webview
     property string alertCallbackID
     property string errAlertCallbackID

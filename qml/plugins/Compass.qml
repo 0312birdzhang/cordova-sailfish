@@ -3,6 +3,7 @@ import QtSensors 5.0
 
 Item {
     id: compassPlugin
+    objectName: "compassPlugin"
     property double azimuth: 0
     property double angle: 0
 

@@ -30,10 +30,29 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import io.thp.pyotherside 1.4
 import "pages"
+import "plugins"
 
 ApplicationWindow
 {
+    property string port :"9527"
+
+    Python{
+        id:webpy
+        signal usedPort(string data)
+        Component.onCompleted: {
+            addImportPath(Qt.resolvedUrl('./py'));
+            setHandler('usedPort', usedPort);
+            webpy.importModule('main', function () {
+                webpy.call('main.start',[Qt.resolvedUrl("./www")],function(result){});
+            });
+        }
+
+        onUsedPort: {
+            port = data.toString();
+        }
+    }
     initialPage: Component { CordovaPage { } }
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
 }

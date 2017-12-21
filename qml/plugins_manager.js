@@ -1,11 +1,12 @@
+var page;
 var PluginsManager = {
     plugins: {},
     addPlugin: function(id) {
         var plugin = Qt.createComponent("plugins/"+id+".qml");
         switch(plugin.status) {
         case Component.Ready:
-            var pluginObject = plugin.createObject(plugin);
-            this.plugins[id] = pluginObject
+            var pluginObject = plugin.createObject(page);
+            this.plugins[id] = pluginObject;
             break;
         case Component.Loading:
             console.log("loading plugin ",id)
@@ -20,3 +21,15 @@ var PluginsManager = {
         return this.plugins[id]
     }
 }
+
+var plugins = ["Device",
+                "Vibration",
+                "NetworkStatus",
+                "Compass",
+                "Battery",
+                "Notification",
+                "Accelerometer",
+                "InAppBrowser",
+                "Geolocation",
+                "Camera",
+                "Contacts" ];

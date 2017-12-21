@@ -32,37 +32,54 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import QtWebKit 3.0
 import QtWebKit.experimental 1.0
+import io.thp.pyotherside 1.4
 import "../plugins"
 import "../plugins_manager.js" as PluginsManager
 
 Page {
     id: cordovaPage
 
-    BusyIndicator {
-        id: busyIndicator
-        anchors.centerIn: parent
-        running: true
-        size: BusyIndicatorSize.Large
+    Python{
+        id:scnner
+        signal started();
+        Component.onCompleted: {
+            addImportPath(Qt.resolvedUrl('../py'));
+            setHandler("started", started)
+            scnner.importModule('main',function () {
+                scnner.startScan();
+            });
+
+
+        }
+
+        function startScan(){
+            scnner.call('main.scanPort',[port],function(result){
+            });
+        }
+
+        onStarted: {
+            var url = "http://127.0.0.1:"+ port + "/index.html";
+            webView.url = url;
+            busy.running = false;
+            webView.visible = true;
+        }
+
     }
 
-    Timer {
-        id: checkState
-        interval: 1000
-        repeat: true
-        triggeredOnStart: true
-        onTriggered: {
-            if(!webview.loading){
-                checkState.stop();
-                busyIndicator.running = false;
-                webview.visible = true;
-            }
-        }
+
+    BusyIndicator {
+        id: busy
+        running: true
+        size: BusyIndicatorSize.Large
+        anchors.centerIn: parent
     }
+
+
 
     SilicaWebView {
         id: webView
         anchors.fill: parent
-//        visible: false
+        visible: false
         // Set preferences
         experimental.preferences.developerExtrasEnabled: true
         experimental.preferences.navigatorQtObjectEnabled: true
@@ -70,38 +87,26 @@ Page {
         experimental.preferences.offlineWebApplicationCacheEnabled: true
         experimental.preferences.universalAccessFromFileURLsAllowed: true
         experimental.preferences.webGLEnabled: true
-        //experimental.transparentBackground: true
+        experimental.transparentBackground: true
 
         // Listen to messages from JS
         experimental.onMessageReceived: {
-            var msg = JSON.parse(message.data)
-            console.log("WebView received Message: " + JSON.stringify(msg))
-            var p = PluginsManager.PluginsManager.plugin(msg.plugin)
-
-            if(p[msg.func]) {
-                p[msg.func].call(this,{webview: webView, params: msg.params});
+            var msg = JSON.parse(message.data);
+//            console.log("WebView received Message: " + JSON.stringify(msg))
+            var func = msg.func;
+            var p = PluginsManager.PluginsManager.plugin(msg.plugin);
+            if(p[func]) {
+                p[func].call(this,{webview: webView, params: msg.params});
             } else {
                 console.error("No such function ", msg.func, " in plugin ", msg.plugin)
             }
         }
+    }
 
-        Component.onCompleted: {
-            // Loading plugins
-            // TODO: externalize to plugins.json
-            PluginsManager.PluginsManager.addPlugin("Device");
-            PluginsManager.PluginsManager.addPlugin("Vibration");
-            PluginsManager.PluginsManager.addPlugin("NetworkStatus");
-            PluginsManager.PluginsManager.addPlugin("Compass");
-//            PluginsManager.PluginsManager.addPlugin("Battery");
-            PluginsManager.PluginsManager.addPlugin("Notification");
-            PluginsManager.PluginsManager.addPlugin("Accelerometer");
-            PluginsManager.PluginsManager.addPlugin("InAppBrowser");
-            PluginsManager.PluginsManager.addPlugin("Geolocation");
-            PluginsManager.PluginsManager.addPlugin("Camera");
-            PluginsManager.PluginsManager.addPlugin("Contacts");
-
-            // Loading index.html
-            webView.url = Qt.resolvedUrl("qrc:/www/index.html")
+    Component.onCompleted: {
+        PluginsManager.page = cordovaPage;
+        for(var i = 0;i<PluginsManager.plugins.length; i++){
+            PluginsManager.PluginsManager.addPlugin(PluginsManager.plugins[i]);
         }
     }
 }

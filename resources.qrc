@@ -34,5 +34,6 @@
         <file>www/plugins/org.apache.cordova.contacts/www/ContactAddress.js</file>
         <file>www/plugins/org.apache.cordova.contacts/www/Contact.js</file>
         <file>www/plugins/org.apache.cordova.contacts/www/contacts.js</file>
+        <file>qml/py/main.py</file>
     </qresource>
 </RCC>

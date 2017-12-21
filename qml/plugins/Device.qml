@@ -3,7 +3,7 @@ import QtSystemInfo 5.0
 
 Item {
     id: devicePlugin
-
+    objectName: "devicePlugin"
     property string platform: "SailfishOS"
     property string cordova: "3.5.0-dev"
 

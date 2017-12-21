@@ -3,6 +3,7 @@ import QtPositioning 5.3
 
 Item{
     id: geolocationPlugin
+    objectName: "geolocationPlugin"
     property variant webview
     property string  callbackID
     property string  errCallbackID

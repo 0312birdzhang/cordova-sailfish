@@ -23,7 +23,6 @@ SOURCES += src/cordova-sailfish.cpp \
 
 OTHER_FILES += qml/cordova-sailfish.qml \
     qml/cover/CoverPage.qml \
-    qml/plugins/device.qml \
     rpm/cordova-sailfish.changes.in \
     rpm/cordova-sailfish.spec \
     rpm/cordova-sailfish.yaml \
@@ -34,7 +33,6 @@ OTHER_FILES += qml/cordova-sailfish.qml \
     qml/plugins/Accelerometer.qml \
     qml/plugins/Vibration.qml \
     qml/plugins_manager.js \
-    www/index.html \
     qml/plugins/NetworkStatus.qml \
     qml/plugins/Compass.qml \
     qml/plugins/Battery.qml \
@@ -42,18 +40,20 @@ OTHER_FILES += qml/cordova-sailfish.qml \
     qml/plugins/Contacts.qml \
     qml/plugins/InAppBrowser.qml \
     qml/plugins/Geolocation.qml \
-    qml/plugins/Camera.qml \
+    qml/plugins/Device.qml \
+    qml/plugins/Camera.qml
 
 # to disable building translations every time, comment out the
 # following CONFIG line
 CONFIG += sailfishapp_i18n
 TRANSLATIONS += translations/cordova-sailfish-de.ts
 
-RESOURCES += \
-    resources.qrc
+#RESOURCES += \
+#    resources.qrc
 
 HEADERS += \
     src/base64.h \
     src/file_utils.h \
     src/image_utils.h
+
 

@@ -4,6 +4,7 @@ import QtMultimedia 5.0
 
 Item {
     id: cameraPlugin
+    objectName: "cameraPlugin"
     property variant webview
     property string  callbackID
     property string  errCallbackID

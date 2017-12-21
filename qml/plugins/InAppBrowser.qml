@@ -4,7 +4,7 @@ import QtWebKit 3.0
 
 Item {
     id: inAppBrowserPlugin
-
+    objectName: "inAppBrowserPlugin"
     Dialog {
         id: dialogInAppWebView
         property string url

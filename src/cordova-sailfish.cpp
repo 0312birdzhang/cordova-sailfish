@@ -48,6 +48,7 @@ int main(int argc, char *argv[])
    QGuiApplication *app = SailfishApp::application(argc, argv);
 
   QQuickView *view = SailfishApp::createView();
+  QObject::connect(view->engine(), SIGNAL(quit()), app, SLOT(quit()));
   view->rootContext()->setContextProperty("Base64", new Base64);
   view->rootContext()->setContextProperty("FileUtils", new FileUtils);
   view->rootContext()->setContextProperty("ImageUtils", new ImageUtils);

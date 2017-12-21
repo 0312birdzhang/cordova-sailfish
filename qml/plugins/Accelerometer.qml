@@ -3,6 +3,7 @@ import QtSensors 5.0
 
 Item{
     id: accelerometerPlugin
+    objectName: "accelerometerPlugin"
     property double acc_x: 0.0
     property double acc_y: 0.0
     property double acc_z: 0.0
