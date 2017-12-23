@@ -22,6 +22,7 @@ Item{
 
         onPositionChanged: {
             var coord = positionSource.position.coordinate;
+
             var position = {
                 latitude: coord.latitude,
                 longitude: coord.longitude,
@@ -32,6 +33,7 @@ Item{
                 heading: -1,
                 timestamp: new Date()
             }
+            console.log("position:"+JSON.stringify(position))
             geolocationPlugin.webview.experimental.evaluateJavaScript("cordova.callback(%1,%2)".arg(geolocationPlugin.callbackID).arg(JSON.stringify(position)));
             positionSource.stop()
         }

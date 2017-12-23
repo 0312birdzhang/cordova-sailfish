@@ -89,6 +89,7 @@ Page {
         experimental.preferences.webGLEnabled: true
         experimental.transparentBackground: true
 
+
         // Listen to messages from JS
         experimental.onMessageReceived: {
             var msg = JSON.parse(message.data);

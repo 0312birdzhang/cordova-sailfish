@@ -1,36 +1,38 @@
 import QtQuick 2.0
-import QtSystemInfo 5.0
+import org.freedesktop.contextkit 1.0
+
 
 Item {
     id: batteryPlugin
     objectName: "batteryPlugin"
 
-
-//    BatteryInfo{
-//        id: battery
-//    }
-    Item{
+    QtObject {
         id: battery
-        function remainingCapacity(offset){
-            return 1;
-        }
-
-        function maximumCapacity(offset){
-            return 100;
-        }
-
-        function chargingState(offset){
-            return "unknown";
-        }
+        property int chargePercentage: 0
+        property bool isCharging: false
     }
+
+    ContextProperty {
+        id: batteryChargePercentageContextProperty
+        key: "Battery.ChargePercentage"
+        onValueChanged: battery.chargePercentage = value
+    }
+
+    ContextProperty {
+        id: batteryIsChargingContextProperty
+        key: "Battery.IsCharging"
+        onValueChanged: battery.isCharging = value
+    }
+
+
 
     function start(options) {
         var webView = options.webview
         var callbackID = options.params.shift()
         var errCallbackID = options.params.shift()
         var result = {
-            level: (battery.remainingCapacity(0) / battery.maximumCapacity(0) * 100).toFixed(0),
-            isPlugged: battery.chargingState(0) === "Charging" /*BatteryInfo.Charging*/
+            level: battery.chargePercentage,
+            isPlugged: battery.isCharging
         }
         webView.experimental.evaluateJavaScript("cordova.callback(%1,%2)".arg(callbackID).arg(JSON.stringify(result)));
     }
