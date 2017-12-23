@@ -7,8 +7,6 @@ Item {
     NetworkInfo {
         id: network
     }
-
-
     function getConnectionInfo(options) {
         var webView = options.webview
         var callbackID = options.params.shift()

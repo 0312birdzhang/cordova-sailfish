@@ -59,11 +59,23 @@ function deviceReadout() {
                     '<li>Cordova: ',device.cordova,'</li>',
                     '<li>Uuid: ',device.uuid,'</li>',
                    '</ul>'].join('');
+   var netModeMap = {
+            0: "Unknown",
+            1: "Gsm",
+            2: "Cdma",
+            3: "Wcdma",
+            4: "Wlan",
+            5: "Ethernet",
+            6: "Bluetooth",
+            7: "Wimax",
+            8: "Lte",
+            9: "Tdscdma"
+        };
 
   document.getElementById("device").innerHTML = deviceInfo;
 
   // Test Connection plugin
-  document.getElementById("connection").innerHTML = 'Connection type : ' + navigator.connection.type;
+  document.getElementById("connection").innerHTML = 'Connection type : ' + netModeMap[navigator.connection.type];
 
   // Test Vibration plugin
   document.getElementById('btn-vibrate').addEventListener('click',function() {

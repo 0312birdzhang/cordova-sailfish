@@ -82,7 +82,7 @@ Item {
         var result = [];
        // contactsModel.contacts.organization
         for(var p in contactsModel.contacts) {
-            console.log(p, contactsModel.contacts[p].name.firstName)
+//            console.log(p, contactsModel.contacts[p].name.firstName)
             var c = {
                 id: p,
                 displayName: contactsModel.contacts[p].name.firstName,
